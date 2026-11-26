@@ -867,17 +867,29 @@
   function iniciarDialogo(d) {
     var caja = $('.dialogo'); if (!caja || !d.dialogue_sample) return;
     var ds = d.dialogue_sample, lis = $$('.dlinea', caja);
+    var audio = $('.d-audio', caja);
+    function pararMp3() { if (audio && !audio.paused) try { audio.pause(); } catch (e) {} }
     function partes(rate) { var vs = vocesDialogo(ds.speakers); return ds.lines.map(function (l) { var x = vs[l.speaker] || {}; return { t: l.es, v: x.v, pitch: x.pitch, rate: rate, pausa: 450 }; }); }
     var bPlay = $('.d-play', caja), bLento = $('.d-lento', caja), bStop = $('.d-stop', caja), estado = $('.d-estado', caja);
     function marcar(k) { lis.forEach(function (li, j) { li.classList.toggle('sonando', j === k); }); if (lis[k] && lis[k].scrollIntoView && lis[k].getBoundingClientRect().top > innerHeight - 80) lis[k].scrollIntoView({ block: 'center', behavior: 'smooth' }); }
     function reset() { marcar(-1); bStop.hidden = true; estado.textContent = ''; }
-    function tocar(rate) { bStop.hidden = false; estado.textContent = rate < 0.85 ? 'Despacio…' : 'Reproduciendo…'; decirCola(partes(rate), marcar, reset); }
+    function tocar(rate) { pararMp3(); bStop.hidden = false; estado.textContent = rate < 0.85 ? 'Despacio…' : 'Reproduciendo…'; decirCola(partes(rate), marcar, reset); }
+    if (audio) {
+      caja.classList.add('con-mp3');
+      audio.setAttribute('controlslist', 'nodownload noplaybackrate');
+      audio.addEventListener('play', function () { pararCola(); reset(); });
+      audio.addEventListener('error', function () {
+        audio.hidden = true;
+        caja.classList.remove('con-mp3');
+        caja.classList.add('sin-mp3');
+      });
+    }
     if (bPlay) bPlay.addEventListener('click', function () { tocar(0.92); });
     if (bLento) bLento.addEventListener('click', function () { tocar(0.7); });
     if (bStop) bStop.addEventListener('click', function () { pararCola(); reset(); });
     lis.forEach(function (li, k) {
       var b = $('.son', li); if (!b) return;
-      b.addEventListener('click', function (ev) { ev.stopPropagation(); var p = partes(0.92)[k]; pararCola(); marcar(k); decirCola([p], null, function () { marcar(-1); }); });
+      b.addEventListener('click', function (ev) { ev.stopPropagation(); var p = partes(0.92)[k]; pararMp3(); pararCola(); marcar(k); decirCola([p], null, function () { marcar(-1); }); });
     });
     var ing = $('.d-ingles', caja);
     if (ing) ing.addEventListener('click', function () { var on = ing.getAttribute('aria-pressed') !== 'true'; ing.setAttribute('aria-pressed', on ? 'true' : 'false'); caja.classList.toggle('con-ingles', on); });

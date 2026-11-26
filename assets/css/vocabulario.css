@@ -328,7 +328,11 @@ mark.lex{background:linear-gradient(transparent 55%,color-mix(in srgb,var(--ocre
 .personajes li{border-radius:999px;padding:.15rem .7rem;font-size:.92rem;background:var(--nivel-lavado)}
 .personajes li[data-hablante="B"],.dlinea[data-hablante="B"] .quien{background:color-mix(in srgb,var(--ocre) 25%,transparent)}
 .personajes span{color:var(--suave)}
-.d-audio{width:100%;margin:.2rem 0 .6rem}
+.d-audio{width:100%;margin:.2rem 0 .6rem;accent-color:var(--nivel)}
+.dialogo.con-mp3 .reproductor .d-play,
+.dialogo.con-mp3 .reproductor .d-lento{display:none}
+.dialogo.con-mp3 .nota-voz:not(.sin-voz-aviso){display:none}
+.dialogo.con-mp3 .sin-voz-aviso{display:none}
 .reproductor{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.8rem}
 .d-estado{font-size:.9rem;color:var(--suave)}
 .d-ingles[aria-pressed="true"]{background:var(--pizarra);color:var(--papel-claro)}
