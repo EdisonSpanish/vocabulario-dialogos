@@ -1,5 +1,5 @@
 /* acceso-alumnos.js — acceso con contraseña para alumnos de Edison Spanish (lecturas, gramática, vocabulario, juegos).
-   Mismo archivo en todos los sitios; el build sustituye {"v": 1, "salt": "Sui9BdWdCovUhC7y/GwSyg==", "iter": 310000, "token": {"acceso_cifrado": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256+HKDF-SHA256", "s": "rMQk7fF2+9SjdbP3G7t4Xw==", "iv": "H5pJWb2bp2VfKkgG", "ct": "kt9wpkv4Ef0RG9td8iiTycVR0vWX3ZsbQqcCKAt1v22JLt+mxkgNlA=="}, "tokenTexto": "edisonspanish:alumnos:ok"} (sal global, iteraciones y token de verificación).
+   Mismo archivo en todos los sitios; el build sustituye {"v": 1, "salt": "Sui9BdWdCovUhC7y/GwSyg==", "iter": 310000, "token": {"acceso_cifrado": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256+HKDF-SHA256", "s": "HflP5kq6N6ZYLEZqbjYw0A==", "iv": "caw4qcVsik4E4pzq", "ct": "896zc5/tUEMJqzsfm2WMSOBHmhu0BJEp9MdHVX05ZuyLn3CCVjpvjw=="}, "tokenTexto": "edisonspanish:alumnos:ok"} (sal global, iteraciones y token de verificación).
    - La contraseña nunca está en este archivo: se comprueba descifrando un token conocido (PBKDF2-SHA256 → HKDF → AES-256-GCM).
    - Si es correcta se guarda la LLAVE derivada (no la contraseña) en una cookie común a *.edisonspanish.com (30 días);
      en localhost / 127.0.0.1 (pruebas) y en otros dominios, en localStorage.
@@ -9,7 +9,7 @@
    API: window.EdisonAcceso = { pendiente(), desbloqueado(), probar(pw), descifrarJSON(o), descifrarTexto(o), abrir(), salir(), listo } */
 (function () {
   'use strict';
-  var CFG = {"v": 1, "salt": "Sui9BdWdCovUhC7y/GwSyg==", "iter": 310000, "token": {"acceso_cifrado": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256+HKDF-SHA256", "s": "rMQk7fF2+9SjdbP3G7t4Xw==", "iv": "H5pJWb2bp2VfKkgG", "ct": "kt9wpkv4Ef0RG9td8iiTycVR0vWX3ZsbQqcCKAt1v22JLt+mxkgNlA=="}, "tokenTexto": "edisonspanish:alumnos:ok"};
+  var CFG = {"v": 1, "salt": "Sui9BdWdCovUhC7y/GwSyg==", "iter": 310000, "token": {"acceso_cifrado": 1, "alg": "AES-256-GCM", "kdf": "PBKDF2-SHA256+HKDF-SHA256", "s": "HflP5kq6N6ZYLEZqbjYw0A==", "iv": "caw4qcVsik4E4pzq", "ct": "896zc5/tUEMJqzsfm2WMSOBHmhu0BJEp9MdHVX05ZuyLn3CCVjpvjw=="}, "tokenTexto": "edisonspanish:alumnos:ok"};
   var NOMBRE = 'es_alumnos';
   var DOMINIO = 'edisonspanish.com';
   var INFO = 'edisonspanish-alumnos-v1';
