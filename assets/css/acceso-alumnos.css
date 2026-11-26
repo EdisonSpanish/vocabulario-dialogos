@@ -1,0 +1,54 @@
+/* acceso-alumnos.css — barra cruzada, candados, gate y modal de acceso (común a los sitios de Edison Spanish) */
+/* Barra de navegación cruzada */
+.barra-nav.red{display:flex;flex-wrap:wrap;gap:.25rem .9rem;align-items:center;font-size:.95rem}
+.barra-nav.red a,.barra-nav.red button{min-height:44px;display:inline-flex;align-items:center;font-weight:600;text-decoration:none;color:var(--pizarra,#2F4254)}
+.barra-nav.red a:hover{text-decoration:underline;text-underline-offset:3px}
+.barra-nav.red a[aria-current="page"]{color:var(--terracota-osc,#9A4428);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.barra-nav.red a.prueba{background:var(--terracota,#C45A38);color:#FBF5EA;border-radius:999px;padding:0 1rem;min-height:40px;box-shadow:0 2px 8px rgba(47,66,84,.18)}
+.barra-nav.red a.prueba:hover{background:var(--terracota-osc,#9A4428);text-decoration:none}
+.barra-nav.red button{font:inherit;font-weight:600;font-size:.9rem;background:none;border:0;padding:0 .2rem;cursor:pointer;color:var(--suave,#4c5d6b)}
+.barra-nav.red button:hover{text-decoration:underline}
+/* Candados en el catálogo */
+li[data-protegido]{display:flex;flex-direction:column}
+li[data-protegido]>a{flex:1 1 auto;height:auto!important}
+.candado{display:inline-block;font-size:.85em;margin-left:.3rem;filter:grayscale(.3);opacity:.85}
+.catalogo li[data-protegido] .meta .candado{margin-left:auto}
+.acceso-nota{margin:.35rem 0 0;font-size:.8rem;line-height:1.35;color:var(--suave,#4c5d6b);padding:0 .3rem}
+.acceso-nota a{color:var(--nivel-osc,#9A4428);font-weight:600}
+.acceso-nota a.acceso-link{display:inline-block;margin-top:.15rem}
+html.acceso-alumno .candado,html.acceso-alumno .acceso-nota{display:none!important}
+html.acceso-alumno [data-solo-visitante]{display:none!important}
+html:not(.acceso-alumno) [data-solo-alumno]{display:none!important}
+/* Gate en páginas protegidas */
+.acceso-gate{text-align:center;border:2px dashed color-mix(in srgb,var(--nivel,#9A4428) 45%,transparent);background:var(--fondo-caja,#FBF5EA)}
+.acceso-gate .acceso-icono{font-size:2.2rem;margin:0}
+.acceso-gate h2{font-family:var(--titulo,Georgia,serif);color:var(--pizarra,#2F4254);font-size:1.25rem;margin:.3rem 0 .5rem}
+.acceso-gate h2 a{color:var(--nivel-osc,#9A4428)}
+.acceso-gate p{margin:.4rem auto;max-width:32rem}
+html.acceso-alumno .acceso-gate{display:none}
+.acceso-form{max-width:24rem;margin:.8rem auto 0;text-align:left}
+.acceso-form label{display:block;font-weight:700;font-size:.92rem;margin-bottom:.3rem;color:var(--pizarra,#2F4254)}
+.acceso-fila{display:flex;gap:.5rem}
+.acceso-fila input{flex:1;min-width:0;font:inherit;padding:.55rem .8rem;border:2px solid rgba(47,66,84,.35);border-radius:10px;background:#fff;min-height:44px}
+.acceso-fila input:focus{border-color:var(--nivel,#9A4428);outline:none;box-shadow:0 0 0 3px var(--nivel-lavado,rgba(154,68,40,.15))}
+.acceso-entrar{font:inherit;font-weight:700;border:0;border-radius:10px;padding:.5rem 1.1rem;min-height:44px;background:var(--nivel,#9A4428);color:#FBF5EA;cursor:pointer}
+.acceso-entrar:disabled{opacity:.6;cursor:wait}
+.acceso-error{color:#A8362A;font-weight:700;font-size:.9rem;margin:.5rem 0 0}
+/* Modal */
+.acceso-modal{position:fixed;inset:0;z-index:1000;background:rgba(47,66,84,.55);display:flex;align-items:center;justify-content:center;padding:1rem}
+.acceso-caja{position:relative;background:#FBF5EA;color:#2F4254;border-radius:16px;max-width:27rem;width:100%;padding:1.4rem 1.4rem 1rem;box-shadow:0 12px 40px rgba(0,0,0,.3);font-family:var(--serif,Georgia,serif)}
+.acceso-caja h2{margin:0 0 .4rem;font-family:var(--titulo,Georgia,serif);font-size:1.3rem}
+.acceso-caja p{margin:.3rem 0;font-size:.95rem}
+.acceso-cerrar{position:absolute;top:.4rem;right:.6rem;border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:#4c5d6b;min-width:44px;min-height:44px}
+.acceso-cta{margin-top:1rem!important;font-size:.88rem!important;color:#4c5d6b}
+.acceso-cta a{color:#9A4428;font-weight:700}
+/* PDFs de alumnos */
+a[data-acceso-pdf][aria-busy="true"]{opacity:.6;cursor:progress}
+/* las notas van dentro de tarjetas cuyo CSS da estilo a todos los <a>: se neutraliza */
+.catalogo .acceso-nota a,.temas .acceso-nota a{display:inline!important;background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;
+  padding:0!important;height:auto!important;min-height:0!important;overflow:visible!important;transform:none!important;color:var(--nivel-osc,#9A4428)!important;text-decoration:underline;font-weight:600}
+.catalogo .acceso-nota a.acceso-link,.temas .acceso-nota a.acceso-link{display:inline-block!important;margin-top:.2rem}
+.catalogo .acceso-nota,.temas .acceso-nota{background:var(--fondo-caja,#FBF5EA);border-radius:0 0 10px 10px;margin:0;padding:.45rem .8rem .55rem;box-shadow:0 3px 14px rgba(47,66,84,.1)}
+.catalogo li[data-protegido]>a{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.temas li[data-protegido]>a{border-bottom-left-radius:0;border-bottom-right-radius:0}
+@media (max-width:30rem){.barra-nav.red{gap:0 .75rem;font-size:.88rem}.barra-nav.red a,.barra-nav.red button{min-height:38px}.barra-nav.red a.prueba{min-height:34px;padding:0 .8rem}}
